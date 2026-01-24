@@ -1,0 +1,10 @@
+name = "pregnancy-hub"
+compatibility_date = "2024-09-23"
+
+# Static assets from the /out directory (static export)
+[assets]
+directory = "./out"
+
+# Environment variables
+[vars]
+NEXT_PUBLIC_SITE_URL = "https://pregnancyhub.io"
