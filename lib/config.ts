@@ -1,0 +1,9 @@
+// Site configuration for ads and analytics
+
+export const siteConfig = {
+  // Google Analytics ID (will be configured later)
+  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || '',
+
+  // AdSense Client ID (shared across sites)
+  adSenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || 'ca-pub-6061225328031066',
+}

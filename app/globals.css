@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 254, 242, 247;
+  --background-end-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+/* Week card styling */
+.week-card {
+  @apply bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow;
+}
+
+.week-number {
+  @apply text-4xl font-bold text-primary-500 mb-2;
+}
+
+/* Topic card styling */
+.topic-card {
+  @apply bg-gradient-to-br from-primary-50 to-white rounded-lg p-6 border border-primary-100 hover:border-primary-300 transition-colors;
+}
+
+/* Prose styling for content pages */
+.prose h2 {
+  @apply text-2xl font-bold text-gray-900 mt-8 mb-4;
+}
+
+.prose h3 {
+  @apply text-xl font-semibold text-gray-800 mt-6 mb-3;
+}
+
+.prose p {
+  @apply text-gray-600 leading-relaxed mb-4;
+}
+
+.prose ul {
+  @apply list-disc list-inside mb-4 space-y-2 text-gray-600;
+}
+
+.prose strong {
+  @apply font-semibold text-gray-900;
+}
+
+/* Callout boxes */
+.callout {
+  @apply bg-primary-50 border-l-4 border-primary-500 p-4 my-6 rounded-r;
+}
+
+.callout-warning {
+  @apply bg-yellow-50 border-l-4 border-yellow-500 p-4 my-6 rounded-r;
+}
+
+.callout-info {
+  @apply bg-blue-50 border-l-4 border-blue-500 p-4 my-6 rounded-r;
+}
