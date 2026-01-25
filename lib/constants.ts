@@ -1,7 +1,7 @@
 // Site-wide constants
 
-export const SITE_NAME = 'PregnancyHub'
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://pregnancyhub.io'
+export const SITE_NAME = 'MyPregnancyWeek'
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://mypregnancyweek.com'
 export const SITE_DESCRIPTION = 'Comprehensive pregnancy information, week-by-week guides, nutrition tips, and expert advice for expectant mothers.'
 
 // Pregnancy stages

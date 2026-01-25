@@ -3,7 +3,7 @@ import { weeklyData } from '@/lib/weekData'
 import { POPULAR_TOPICS, TOPICS } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://pregnancyhub.io'
+  const baseUrl = 'https://mypregnancyweek.com'
 
   // Base pages
   const routes = [

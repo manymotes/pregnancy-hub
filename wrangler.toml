@@ -7,4 +7,4 @@ directory = "./out"
 
 # Environment variables
 [vars]
-NEXT_PUBLIC_SITE_URL = "https://pregnancyhub.io"
+NEXT_PUBLIC_SITE_URL = "https://mypregnancyweek.com"
