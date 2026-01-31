@@ -16,7 +16,11 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
+  keywords: ['pregnancy', 'pregnancy week by week', 'baby development', 'pregnancy symptoms', 'pregnancy calculator', 'due date calculator', 'pregnancy guide', 'prenatal care', 'fetal development', 'expecting baby'],
   metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: SITE_URL,
+  },
   icons: {
     icon: '/icon.svg',
   },
@@ -25,6 +29,7 @@ export const metadata: Metadata = {
     siteName: SITE_NAME,
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
+    images: ['/og-image.png'],
   },
   twitter: {
     card: 'summary_large_image',
@@ -32,6 +37,14 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  verification: {
+    // AdSense verification code - get from https://adsense.google.com → Sites → mypregnancyweek.com
+    // Copy the content value from the meta tag: <meta name="google-adsense-verification" content="CODE_HERE" />
+    google: process.env.NEXT_PUBLIC_ADSENSE_VERIFICATION || '',
+  },
+  other: {
+    'google-adsense-account': 'ca-pub-6061225328031066',
   },
 }
 
