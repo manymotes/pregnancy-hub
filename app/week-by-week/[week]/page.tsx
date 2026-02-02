@@ -162,6 +162,22 @@ export default function WeekPage({ params }: { params: { week: string } }) {
         </div>
       </div>
 
+      {/* Baby Name Ideas - Cross-site Link */}
+      <div className="bg-pink-50 rounded-lg border border-pink-200 p-6 mt-8">
+        <h3 className="font-semibold text-gray-900 mb-2">Baby Name Ideas</h3>
+        <p className="text-sm text-gray-700 mb-3">
+          Start exploring baby names that match your baby's due date zodiac sign. Discover meanings, origins, and popularity trends:
+        </p>
+        <a
+          href="https://babynamescout.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-1 text-sm"
+        >
+          Browse baby names →
+        </a>
+      </div>
+
       {/* Navigation */}
       <div className="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
         {prevWeek ? (

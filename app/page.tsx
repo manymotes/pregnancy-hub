@@ -1,10 +1,45 @@
 import Link from 'next/link'
-import { SITE_NAME, TRIMESTERS, TOPICS, POPULAR_TOPICS } from '@/lib/constants'
+import Script from 'next/script'
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL, TRIMESTERS, TOPICS, POPULAR_TOPICS } from '@/lib/constants'
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  description: SITE_DESCRIPTION,
+  url: SITE_URL,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE_URL}/search?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+}
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/icon.svg`,
+  description: SITE_DESCRIPTION,
+  sameAs: [],
+}
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-b from-primary-50 to-white">
-      {/* Hero Section */}
+    <>
+      <Script
+        id="website-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <Script
+        id="organization-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <div className="bg-gradient-to-b from-primary-50 to-white">
+        {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center">
           <h1 className="text-5xl font-bold text-gray-900 mb-6">
@@ -121,5 +156,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   )
 }

@@ -53,13 +53,25 @@ export default function PregnancyEssentialsPage() {
 
               {/* Nature Made Prenatal */}
               <div className="border-b border-gray-200 pb-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Nature Made Prenatal Multi + DHA
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-yellow-500">★★★★★</div>
-                    <div className="text-gray-600 text-sm">4.7/5</div>
+                <div className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div className="md:col-span-1">
+                    <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg p-8 border-2 border-orange-300 flex items-center justify-center" style={{minHeight: '200px'}}>
+                      <div className="text-center">
+                        <div className="text-7xl mb-2">💊</div>
+                        <div className="text-sm font-semibold text-orange-900">Prenatal Vitamins</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Nature Made Prenatal Multi + DHA
+                      </h3>
+                      <div className="text-right">
+                        <div className="text-yellow-500">★★★★★</div>
+                        <div className="text-gray-600 text-sm">4.7/5</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-3">
@@ -103,13 +115,25 @@ export default function PregnancyEssentialsPage() {
 
               {/* Ritual Prenatal */}
               <div className="border-b border-gray-200 pb-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Ritual Essential Prenatal Multivitamin
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-yellow-500">★★★★★</div>
-                    <div className="text-gray-600 text-sm">4.6/5</div>
+                <div className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div className="md:col-span-1">
+                    <div className="bg-gradient-to-br from-orange-100 to-orange-200 rounded-lg p-8 border-2 border-orange-300 flex items-center justify-center" style={{minHeight: '200px'}}>
+                      <div className="text-center">
+                        <div className="text-7xl mb-2">💊</div>
+                        <div className="text-sm font-semibold text-orange-900">Prenatal Vitamins</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Ritual Essential Prenatal Multivitamin
+                      </h3>
+                      <div className="text-right">
+                        <div className="text-yellow-500">★★★★★</div>
+                        <div className="text-gray-600 text-sm">4.6/5</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-3">
@@ -150,13 +174,25 @@ export default function PregnancyEssentialsPage() {
 
               {/* PharMeDoc Full Body Pillow */}
               <div className="border-b border-gray-200 pb-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    PharMeDoc Full Body Pregnancy Pillow
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-yellow-500">★★★★★</div>
-                    <div className="text-gray-600 text-sm">4.5/5</div>
+                <div className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div className="md:col-span-1">
+                    <div className="bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg p-8 border-2 border-blue-300 flex items-center justify-center" style={{minHeight: '200px'}}>
+                      <div className="text-center">
+                        <div className="text-7xl mb-2">🛏️</div>
+                        <div className="text-sm font-semibold text-blue-900">Pregnancy Pillow</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        PharMeDoc Full Body Pregnancy Pillow
+                      </h3>
+                      <div className="text-right">
+                        <div className="text-yellow-500">★★★★★</div>
+                        <div className="text-gray-600 text-sm">4.5/5</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-3">
@@ -217,13 +253,25 @@ export default function PregnancyEssentialsPage() {
 
               {/* Maternity Leggings */}
               <div className="border-b border-gray-200 pb-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Maternity Leggings with Belly Support
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-yellow-500">★★★★☆</div>
-                    <div className="text-gray-600 text-sm">4.4/5</div>
+                <div className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div className="md:col-span-1">
+                    <div className="bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg p-8 border-2 border-purple-300 flex items-center justify-center" style={{minHeight: '200px'}}>
+                      <div className="text-center">
+                        <div className="text-7xl mb-2">👖</div>
+                        <div className="text-sm font-semibold text-purple-900">Maternity Wear</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Maternity Leggings with Belly Support
+                      </h3>
+                      <div className="text-right">
+                        <div className="text-yellow-500">★★★★☆</div>
+                        <div className="text-gray-600 text-sm">4.4/5</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-3">
@@ -247,13 +295,25 @@ export default function PregnancyEssentialsPage() {
 
               {/* Nursing Bras */}
               <div className="border-b border-gray-200 pb-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Nursing Bras & Sleep Bras
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-yellow-500">★★★★★</div>
-                    <div className="text-gray-600 text-sm">4.6/5</div>
+                <div className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div className="md:col-span-1">
+                    <div className="bg-gradient-to-br from-purple-100 to-purple-200 rounded-lg p-8 border-2 border-purple-300 flex items-center justify-center" style={{minHeight: '200px'}}>
+                      <div className="text-center">
+                        <div className="text-7xl mb-2">👙</div>
+                        <div className="text-sm font-semibold text-purple-900">Nursing Bras</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Nursing Bras & Sleep Bras
+                      </h3>
+                      <div className="text-right">
+                        <div className="text-yellow-500">★★★★★</div>
+                        <div className="text-gray-600 text-sm">4.6/5</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-3">
@@ -294,13 +354,25 @@ export default function PregnancyEssentialsPage() {
 
               {/* What to Expect */}
               <div className="border-b border-gray-200 pb-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    What to Expect When You're Expecting
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-yellow-500">★★★★★</div>
-                    <div className="text-gray-600 text-sm">4.7/5</div>
+                <div className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div className="md:col-span-1">
+                    <div className="bg-gradient-to-br from-green-100 to-green-200 rounded-lg p-8 border-2 border-green-300 flex items-center justify-center" style={{minHeight: '200px'}}>
+                      <div className="text-center">
+                        <div className="text-7xl mb-2">📚</div>
+                        <div className="text-sm font-semibold text-green-900">Pregnancy Books</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        What to Expect When You're Expecting
+                      </h3>
+                      <div className="text-right">
+                        <div className="text-yellow-500">★★★★★</div>
+                        <div className="text-gray-600 text-sm">4.7/5</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-3">
@@ -340,13 +412,25 @@ export default function PregnancyEssentialsPage() {
             <div className="p-6 space-y-6">
 
               <div className="border-b border-gray-200 pb-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-xl font-bold text-gray-900">
-                    Palmer's Cocoa Butter Formula Belly Butter
-                  </h3>
-                  <div className="text-right">
-                    <div className="text-yellow-500">★★★★☆</div>
-                    <div className="text-gray-600 text-sm">4.5/5</div>
+                <div className="grid md:grid-cols-4 gap-4 mb-4">
+                  <div className="md:col-span-1">
+                    <div className="bg-gradient-to-br from-pink-100 to-pink-200 rounded-lg p-8 border-2 border-pink-300 flex items-center justify-center" style={{minHeight: '200px'}}>
+                      <div className="text-center">
+                        <div className="text-7xl mb-2">🧴</div>
+                        <div className="text-sm font-semibold text-pink-900">Belly Butter</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3">
+                    <div className="flex items-start justify-between mb-3">
+                      <h3 className="text-xl font-bold text-gray-900">
+                        Palmer's Cocoa Butter Formula Belly Butter
+                      </h3>
+                      <div className="text-right">
+                        <div className="text-yellow-500">★★★★☆</div>
+                        <div className="text-gray-600 text-sm">4.5/5</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <p className="text-gray-700 mb-3">

@@ -6,6 +6,7 @@ import { SITE_NAME } from '@/lib/constants'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false)
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -23,15 +24,52 @@ export function Header() {
             <Link href="/week-by-week" className="text-gray-600 hover:text-primary-600 transition-colors">
               Week by Week
             </Link>
-            <Link href="/nutrition" className="text-gray-600 hover:text-primary-600 transition-colors">
-              Nutrition
-            </Link>
             <Link href="/symptoms" className="text-gray-600 hover:text-primary-600 transition-colors">
               Symptoms
             </Link>
             <Link href="/baby-development" className="text-gray-600 hover:text-primary-600 transition-colors">
               Baby Development
             </Link>
+
+            {/* Resources Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsResourcesOpen(!isResourcesOpen)}
+                onBlur={() => setTimeout(() => setIsResourcesOpen(false), 200)}
+                className="text-gray-600 hover:text-primary-600 transition-colors flex items-center gap-1"
+              >
+                Resources
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              {isResourcesOpen && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                  <Link href="/exercises" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Pregnancy Exercises
+                  </Link>
+                  <Link href="/medical-tests" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Medical Tests & Procedures
+                  </Link>
+                  <Link href="/labor-prep" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Labor & Delivery Prep
+                  </Link>
+                  <Link href="/complications" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Pregnancy Complications
+                  </Link>
+                  <Link href="/calculators" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Calculators & Tools
+                  </Link>
+                  <Link href="/checklists" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Checklists & Planning
+                  </Link>
+                  <Link href="/nutrition" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Nutrition Guide
+                  </Link>
+                </div>
+              )}
+            </div>
+
             <Link href="/about" className="text-gray-600 hover:text-primary-600 transition-colors">
               About
             </Link>
@@ -61,16 +99,37 @@ export function Header() {
               <Link href="/week-by-week" className="text-gray-600 hover:text-primary-600 py-2">
                 Week by Week
               </Link>
-              <Link href="/nutrition" className="text-gray-600 hover:text-primary-600 py-2">
-                Nutrition
-              </Link>
               <Link href="/symptoms" className="text-gray-600 hover:text-primary-600 py-2">
                 Symptoms
               </Link>
               <Link href="/baby-development" className="text-gray-600 hover:text-primary-600 py-2">
                 Baby Development
               </Link>
-              <Link href="/about" className="text-gray-600 hover:text-primary-600 py-2">
+              <div className="border-t border-gray-200 pt-2 mt-2">
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 py-1">Resources</p>
+                <Link href="/exercises" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Pregnancy Exercises
+                </Link>
+                <Link href="/medical-tests" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Medical Tests & Procedures
+                </Link>
+                <Link href="/labor-prep" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Labor & Delivery Prep
+                </Link>
+                <Link href="/complications" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Pregnancy Complications
+                </Link>
+                <Link href="/calculators" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Calculators & Tools
+                </Link>
+                <Link href="/checklists" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Checklists & Planning
+                </Link>
+                <Link href="/nutrition" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Nutrition Guide
+                </Link>
+              </div>
+              <Link href="/about" className="text-gray-600 hover:text-primary-600 py-2 border-t border-gray-200 pt-2 mt-2">
                 About
               </Link>
             </div>

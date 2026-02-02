@@ -87,6 +87,46 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Explore More - Wellness/Parenting Group */}
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          <h3 className="text-white font-semibold mb-4">Explore More</h3>
+          <p className="text-gray-400 text-sm mb-4">
+            Discover related resources for spiritual wellness and parenting:
+          </p>
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm text-gray-400">
+            <li>
+              <a
+                href="https://horoscopehub.io"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                Daily Horoscopes →
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://crystalguide.co"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                Crystal Meanings & Healing →
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://babynamescout.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                Baby Name Meanings →
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-gray-400">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p>&copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
