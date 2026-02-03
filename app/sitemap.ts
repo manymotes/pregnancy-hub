@@ -10,6 +10,7 @@ import { complicationsData } from '@/lib/complicationsData'
 import { calculatorsData } from '@/lib/calculatorsData'
 import { checklistsData } from '@/lib/checklistsData'
 import { popularComparisons } from '@/lib/comparisonData'
+import { birthPlanData } from '@/lib/birthPlanData'
 import { POPULAR_TOPICS, TOPICS } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -37,12 +38,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/compare-weeks',
     '/symptom-tracker',
     '/symptom-tracker/checker',
+    '/birth-plan',
+    '/birth-plan/builder',
     '/about',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : route === '/symptom-tracker' || route === '/symptom-tracker/checker' ? 0.8 : 0.8,
+    priority: route === '' ? 1 : route === '/birth-plan' || route === '/birth-plan/builder' ? 0.8 : route === '/symptom-tracker' || route === '/symptom-tracker/checker' ? 0.8 : 0.8,
   }))
 
   // Week pages - limit to 40 weeks (actual generated count)
@@ -133,6 +136,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  // Birth plan pages - 8 birth plan templates
+  const birthPlanPages = birthPlanData.map((plan) => ({
+    url: `${baseUrl}/birth-plan/${plan.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
   return [
     ...routes,
     ...weekPages,
@@ -146,5 +157,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...calculatorPages,
     ...checklistPages,
     ...comparisonPages,
+    ...birthPlanPages,
   ]
 }

@@ -115,6 +115,17 @@ export default function Home() {
             </h3>
             <p className="text-gray-600 text-sm">See baby's growth comparisons</p>
           </Link>
+
+          <Link
+            href="/birth-plan"
+            className="bg-gradient-to-br from-pink-50 to-purple-50 p-6 rounded-lg border-2 border-pink-200 hover:shadow-xl transition-all group"
+          >
+            <div className="text-4xl mb-3">📋</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+              Birth Plan Templates
+            </h3>
+            <p className="text-gray-600 text-sm">Create your personalized birth plan</p>
+          </Link>
         </div>
 
         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
