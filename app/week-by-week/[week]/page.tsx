@@ -2,6 +2,8 @@ import Link from 'next/link'
 import { getWeekData, weeklyData } from '@/lib/weekData'
 import { TRIMESTERS } from '@/lib/constants'
 import { notFound } from 'next/navigation'
+import { getTestimonialForWeek } from '@/lib/testimonialsData'
+import { getFAQsForWeek } from '@/lib/faqsData'
 
 export async function generateStaticParams() {
   return weeklyData.map((week) => ({
@@ -36,6 +38,8 @@ export default function WeekPage({ params }: { params: { week: string } }) {
   const trimester = TRIMESTERS[data.trimester - 1]
   const prevWeek = weekNum > 1 ? weekNum - 1 : null
   const nextWeek = weekNum < 40 ? weekNum + 1 : null
+  const testimonial = getTestimonialForWeek(weekNum)
+  const faqs = getFAQsForWeek(weekNum)
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -138,18 +142,70 @@ export default function WeekPage({ params }: { params: { week: string } }) {
       <section className="mb-8">
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-            <span>✅</span> To-Do This Week
+            <span>✅</span> Your Checklist This Week
           </h2>
+          <p className="text-gray-600 mb-4">
+            Here are the most important tasks to focus on during week {weekNum} of your pregnancy:
+          </p>
           <ul className="space-y-3">
             {data.toDo.map((item, index) => (
               <li key={index} className="flex items-start gap-3">
-                <span className="text-primary-600 mt-1">•</span>
+                <input type="checkbox" className="mt-1 h-5 w-5 text-primary-600 rounded" />
                 <span className="text-gray-700">{item}</span>
               </li>
             ))}
           </ul>
         </div>
       </section>
+
+      {/* What Other Moms Say - Testimonials */}
+      {testimonial && (
+        <section className="mb-8">
+          <div className="bg-gradient-to-br from-purple-50 to-pink-50 rounded-lg shadow p-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <span>💬</span> What Other Moms Say
+            </h2>
+            <div className="bg-white rounded-lg p-6 border-l-4 border-primary-600">
+              <p className="text-gray-700 italic mb-4">"{testimonial.quote}"</p>
+              <div className="flex items-center gap-2 text-sm">
+                <span className="font-semibold text-gray-900">— {testimonial.author}</span>
+                <span className="text-gray-500">•</span>
+                <span className="text-gray-600">{testimonial.context}</span>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 mt-4">
+              Every pregnancy is unique. This experience from a real mom at week {weekNum} shows the range of emotions and physical changes you might encounter.
+            </p>
+          </div>
+        </section>
+      )}
+
+      {/* Common Questions This Week - FAQs */}
+      {faqs.length > 0 && (
+        <section className="mb-8">
+          <div className="bg-white rounded-lg shadow p-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <span>❓</span> Common Questions for Week {weekNum}
+            </h2>
+            <p className="text-gray-600 mb-6">
+              These are the questions most frequently asked by expectant mothers during week {weekNum}:
+            </p>
+            <div className="space-y-6">
+              {faqs.map((faq, index) => (
+                <div key={index} className="border-b border-gray-200 pb-6 last:border-0 last:pb-0">
+                  <h3 className="font-bold text-lg text-gray-900 mb-3 flex items-start gap-2">
+                    <span className="text-primary-600 flex-shrink-0">Q:</span>
+                    <span>{faq.question}</span>
+                  </h3>
+                  <div className="ml-6 text-gray-700 leading-relaxed">
+                    <span className="font-semibold text-primary-600">A:</span> {faq.answer}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* What to Expect This Week */}
       <section className="mb-8">
@@ -399,6 +455,70 @@ export default function WeekPage({ params }: { params: { week: string } }) {
           <div />
         )}
       </div>
+
+      {/* Schema Markup for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'MedicalWebPage',
+            name: `Week ${weekNum} of Pregnancy`,
+            description: `Pregnancy week ${weekNum}: Your baby is the size of ${data.babySize.toLowerCase()}. Learn about baby development, symptoms, and what to expect this week.`,
+            about: {
+              '@type': 'MedicalCondition',
+              name: 'Pregnancy',
+            },
+            mainEntity: {
+              '@type': 'HowTo',
+              name: `How to Navigate Week ${weekNum} of Pregnancy`,
+              description: `Complete guide for pregnancy week ${weekNum} including baby development, symptoms, nutrition, and checklist.`,
+              step: data.toDo.map((item, index) => ({
+                '@type': 'HowToStep',
+                position: index + 1,
+                name: item,
+                text: item,
+              })),
+            },
+            ...(faqs.length > 0 && {
+              mainEntity: {
+                '@type': 'FAQPage',
+                mainEntity: faqs.map((faq) => ({
+                  '@type': 'Question',
+                  name: faq.question,
+                  acceptedAnswer: {
+                    '@type': 'Answer',
+                    text: faq.answer,
+                  },
+                })),
+              },
+            }),
+            breadcrumb: {
+              '@type': 'BreadcrumbList',
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://pregnancyhub.com',
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: 'Week by Week',
+                  item: 'https://pregnancyhub.com/week-by-week',
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 3,
+                  name: `Week ${weekNum}`,
+                  item: `https://pregnancyhub.com/week-by-week/${weekNum}`,
+                },
+              ],
+            },
+          }),
+        }}
+      />
     </div>
   )
 }

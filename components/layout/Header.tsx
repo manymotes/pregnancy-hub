@@ -45,6 +45,19 @@ export function Header() {
               </button>
               {isResourcesOpen && (
                 <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-200 py-2">
+                  <Link href="/trimester-guide" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Trimester Guide
+                  </Link>
+                  <Link href="/pregnancy-timeline" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Pregnancy Timeline
+                  </Link>
+                  <Link href="/symptoms-by-week" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Symptoms by Week
+                  </Link>
+                  <Link href="/baby-size-chart" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
+                    Baby Size Chart
+                  </Link>
+                  <div className="border-t border-gray-200 my-2"></div>
                   <Link href="/exercises" className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600">
                     Pregnancy Exercises
                   </Link>
@@ -107,6 +120,18 @@ export function Header() {
               </Link>
               <div className="border-t border-gray-200 pt-2 mt-2">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide px-2 py-1">Resources</p>
+                <Link href="/trimester-guide" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Trimester Guide
+                </Link>
+                <Link href="/pregnancy-timeline" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Pregnancy Timeline
+                </Link>
+                <Link href="/symptoms-by-week" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Symptoms by Week
+                </Link>
+                <Link href="/baby-size-chart" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
+                  Baby Size Chart
+                </Link>
                 <Link href="/exercises" className="text-gray-600 hover:text-primary-600 py-2 pl-4 block">
                   Pregnancy Exercises
                 </Link>

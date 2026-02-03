@@ -66,8 +66,57 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trimester Navigation */}
+      {/* Quick Access Navigation */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+          Essential Pregnancy Guides
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <Link
+            href="/trimester-guide"
+            className="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-lg border-2 border-green-200 hover:shadow-xl transition-all group"
+          >
+            <div className="text-4xl mb-3">📖</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+              Trimester Guide
+            </h3>
+            <p className="text-gray-600 text-sm">Complete overview of all 3 stages</p>
+          </Link>
+
+          <Link
+            href="/pregnancy-timeline"
+            className="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-lg border-2 border-yellow-200 hover:shadow-xl transition-all group"
+          >
+            <div className="text-4xl mb-3">📊</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+              Pregnancy Timeline
+            </h3>
+            <p className="text-gray-600 text-sm">Visual 40-week journey overview</p>
+          </Link>
+
+          <Link
+            href="/symptoms-by-week"
+            className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border-2 border-purple-200 hover:shadow-xl transition-all group"
+          >
+            <div className="text-4xl mb-3">💭</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+              Symptoms by Week
+            </h3>
+            <p className="text-gray-600 text-sm">Track symptoms throughout pregnancy</p>
+          </Link>
+
+          <Link
+            href="/baby-size-chart"
+            className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg border-2 border-blue-200 hover:shadow-xl transition-all group"
+          >
+            <div className="text-4xl mb-3">📏</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+              Baby Size Chart
+            </h3>
+            <p className="text-gray-600 text-sm">See baby's growth comparisons</p>
+          </Link>
+        </div>
+
         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
           Explore by Trimester
         </h2>
