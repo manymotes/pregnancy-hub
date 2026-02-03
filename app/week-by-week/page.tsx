@@ -54,6 +54,45 @@ export default function WeekByWeekPage() {
         )
       })}
 
+      {/* Helpful Tools */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Helpful Pregnancy Tools</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Link
+            href="/compare-weeks"
+            className="bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="text-4xl mb-3 text-center">📊</div>
+            <h3 className="font-semibold text-gray-900 mb-2 text-center">Compare Weeks</h3>
+            <p className="text-sm text-gray-700 text-center">
+              See how your baby develops week to week with our interactive comparison tool
+            </p>
+          </Link>
+
+          <Link
+            href="/nutrition"
+            className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="text-4xl mb-3 text-center">🥗</div>
+            <h3 className="font-semibold text-gray-900 mb-2 text-center">Nutrition Guides</h3>
+            <p className="text-sm text-gray-700 text-center">
+              Trimester-specific nutrition advice to support your baby's growth
+            </p>
+          </Link>
+
+          <Link
+            href="/calculators"
+            className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="text-4xl mb-3 text-center">🧮</div>
+            <h3 className="font-semibold text-gray-900 mb-2 text-center">Calculators</h3>
+            <p className="text-sm text-gray-700 text-center">
+              Due date, weight gain, and other pregnancy calculators
+            </p>
+          </Link>
+        </div>
+      </section>
+
       {/* Quick Navigation */}
       <div className="bg-gray-50 rounded-lg p-8 text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">

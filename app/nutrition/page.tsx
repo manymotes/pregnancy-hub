@@ -16,6 +16,53 @@ export default function NutritionPage() {
         Learn what to eat, what to avoid, and how to maintain a balanced diet.
       </p>
 
+      {/* Trimester-Specific Guides */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          Nutrition Guides by Trimester
+        </h2>
+        <p className="text-gray-600 mb-6">
+          Your nutritional needs change throughout pregnancy. Get trimester-specific guidance:
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Link
+            href="/nutrition/first"
+            className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="text-4xl mb-3">🌱</div>
+            <h3 className="font-semibold text-gray-900 mb-2">First Trimester</h3>
+            <p className="text-sm text-gray-700 mb-3">Weeks 1-13</p>
+            <p className="text-sm text-gray-600">
+              Essential nutrients for early development, managing morning sickness, and foods to avoid
+            </p>
+          </Link>
+
+          <Link
+            href="/nutrition/second"
+            className="bg-gradient-to-br from-blue-50 to-cyan-50 border border-blue-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="text-4xl mb-3">🌻</div>
+            <h3 className="font-semibold text-gray-900 mb-2">Second Trimester</h3>
+            <p className="text-sm text-gray-700 mb-3">Weeks 14-27</p>
+            <p className="text-sm text-gray-600">
+              Increased calorie needs, bone-building nutrients, energy foods, and healthy weight gain
+            </p>
+          </Link>
+
+          <Link
+            href="/nutrition/third"
+            className="bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-6 hover:shadow-lg transition-shadow"
+          >
+            <div className="text-4xl mb-3">🌸</div>
+            <h3 className="font-semibold text-gray-900 mb-2">Third Trimester</h3>
+            <p className="text-sm text-gray-700 mb-3">Weeks 28-40</p>
+            <p className="text-sm text-gray-600">
+              Labor preparation, iron stores, managing discomfort, and breastfeeding prep
+            </p>
+          </Link>
+        </div>
+      </section>
+
       {/* Essential Nutrients */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">

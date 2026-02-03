@@ -151,6 +151,140 @@ export default function WeekPage({ params }: { params: { week: string } }) {
         </div>
       </section>
 
+      {/* What to Expect This Week */}
+      <section className="mb-8">
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg shadow p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>🔍</span> What to Expect This Week
+          </h2>
+          <div className="space-y-4">
+            <div className="bg-white rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-2">Your Baby</h3>
+              <p className="text-gray-700">
+                At week {weekNum}, your baby is approximately {data.babyLength} long and weighs about {data.babyWeight}.
+                Major developmental milestones are occurring, including organ formation and growth.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-2">Your Body</h3>
+              <p className="text-gray-700">
+                You may be experiencing various pregnancy symptoms as your body adapts to support your growing baby.
+                Hormone levels are changing, which affects many aspects of how you feel.
+              </p>
+            </div>
+            <div className="bg-white rounded-lg p-4">
+              <h3 className="font-semibold text-gray-900 mb-2">Doctor Visits</h3>
+              <p className="text-gray-700">
+                {weekNum <= 13
+                  ? "During the first trimester, you'll likely have your initial prenatal visit and possibly an early ultrasound."
+                  : weekNum <= 27
+                  ? "In the second trimester, you'll have regular checkups and important screenings including anatomy scans."
+                  : "Third trimester appointments become more frequent as you approach your due date."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Symptom Checker */}
+      <section className="mb-8">
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <span>⚠️</span> When to Call Your Doctor
+          </h2>
+          <p className="text-gray-700 mb-4">
+            While the symptoms listed above are common, contact your healthcare provider if you experience:
+          </p>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-3">
+              <span className="text-red-600 mt-1">•</span>
+              <span className="text-gray-700">Severe abdominal pain or cramping</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-red-600 mt-1">•</span>
+              <span className="text-gray-700">Heavy bleeding or passing clots</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-red-600 mt-1">•</span>
+              <span className="text-gray-700">Severe headaches with vision changes</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-red-600 mt-1">•</span>
+              <span className="text-gray-700">Fever over 100.4°F (38°C)</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-red-600 mt-1">•</span>
+              <span className="text-gray-700">Decreased fetal movement after week 28</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="text-red-600 mt-1">•</span>
+              <span className="text-gray-700">Sudden swelling of face, hands, or feet</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Related Weeks - Internal Linking */}
+      <section className="mb-8">
+        <div className="bg-white rounded-lg shadow p-6">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Compare with Other Weeks</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {weekNum > 2 && (
+              <Link
+                href={`/week-by-week/${weekNum - 2}`}
+                className="text-center p-4 bg-gray-50 rounded-lg hover:bg-primary-50 transition-colors"
+              >
+                <div className="text-sm text-gray-600 mb-1">2 weeks ago</div>
+                <div className="font-semibold text-primary-600">Week {weekNum - 2}</div>
+              </Link>
+            )}
+            {weekNum > 4 && (
+              <Link
+                href={`/week-by-week/${weekNum - 4}`}
+                className="text-center p-4 bg-gray-50 rounded-lg hover:bg-primary-50 transition-colors"
+              >
+                <div className="text-sm text-gray-600 mb-1">4 weeks ago</div>
+                <div className="font-semibold text-primary-600">Week {weekNum - 4}</div>
+              </Link>
+            )}
+            {weekNum < 39 && (
+              <Link
+                href={`/week-by-week/${weekNum + 2}`}
+                className="text-center p-4 bg-gray-50 rounded-lg hover:bg-primary-50 transition-colors"
+              >
+                <div className="text-sm text-gray-600 mb-1">2 weeks ahead</div>
+                <div className="font-semibold text-primary-600">Week {weekNum + 2}</div>
+              </Link>
+            )}
+            {weekNum < 37 && (
+              <Link
+                href={`/week-by-week/${weekNum + 4}`}
+                className="text-center p-4 bg-gray-50 rounded-lg hover:bg-primary-50 transition-colors"
+              >
+                <div className="text-sm text-gray-600 mb-1">4 weeks ahead</div>
+                <div className="font-semibold text-primary-600">Week {weekNum + 4}</div>
+              </Link>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Trimester Overview Link */}
+      <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg border border-purple-200 p-6 mb-8">
+        <h3 className="font-semibold text-gray-900 mb-2">
+          {trimester.icon} Learn More About {trimester.name}
+        </h3>
+        <p className="text-sm text-gray-700 mb-3">
+          Discover what to expect throughout weeks {trimester.weeks} of your pregnancy journey.
+        </p>
+        <Link
+          href={`/${trimester.slug}`}
+          className="text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-1 text-sm"
+        >
+          View {trimester.name} guide →
+        </Link>
+      </div>
+
       {/* Fun Fact */}
       <div className="callout-info">
         <div className="flex items-start gap-3">
@@ -161,6 +295,60 @@ export default function WeekPage({ params }: { params: { week: string } }) {
           </div>
         </div>
       </div>
+
+      {/* Helpful Resources Grid */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Helpful Resources for Week {weekNum}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <Link
+            href="/calculators/due-date-calculator"
+            className="bg-blue-50 border border-blue-200 rounded-lg p-5 hover:shadow-md transition-shadow"
+          >
+            <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+              <span>📅</span> Due Date Calculator
+            </h3>
+            <p className="text-sm text-gray-700">
+              Calculate your estimated due date and track important pregnancy milestones.
+            </p>
+          </Link>
+
+          <Link
+            href="/calculators/weight-gain-calculator"
+            className="bg-green-50 border border-green-200 rounded-lg p-5 hover:shadow-md transition-shadow"
+          >
+            <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+              <span>⚖️</span> Weight Gain Tracker
+            </h3>
+            <p className="text-sm text-gray-700">
+              Monitor healthy weight gain throughout your pregnancy journey.
+            </p>
+          </Link>
+
+          <Link
+            href={`/nutrition/${trimester.slug.replace('-trimester', '')}`}
+            className="bg-orange-50 border border-orange-200 rounded-lg p-5 hover:shadow-md transition-shadow"
+          >
+            <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+              <span>🥗</span> Nutrition Guide
+            </h3>
+            <p className="text-sm text-gray-700">
+              Discover the best foods and nutrients for your {trimester.name.toLowerCase()}.
+            </p>
+          </Link>
+
+          <Link
+            href="/symptoms"
+            className="bg-purple-50 border border-purple-200 rounded-lg p-5 hover:shadow-md transition-shadow"
+          >
+            <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+              <span>💭</span> Symptom Guide
+            </h3>
+            <p className="text-sm text-gray-700">
+              Learn about common pregnancy symptoms and when to seek medical advice.
+            </p>
+          </Link>
+        </div>
+      </section>
 
       {/* Baby Name Ideas - Cross-site Link */}
       <div className="bg-pink-50 rounded-lg border border-pink-200 p-6 mt-8">

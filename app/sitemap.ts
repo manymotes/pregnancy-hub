@@ -21,6 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/second-trimester',
     '/third-trimester',
     '/nutrition',
+    '/nutrition/first',
+    '/nutrition/second',
+    '/nutrition/third',
     '/symptoms',
     '/baby-development',
     '/exercises',
@@ -29,6 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/complications',
     '/calculators',
     '/checklists',
+    '/compare-weeks',
     '/about',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
@@ -37,72 +41,72 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === '' ? 1 : 0.8,
   }))
 
-  // Week pages
-  const weekPages = weeklyData.map((week) => ({
+  // Week pages - limit to 40 weeks (actual generated count)
+  const weekPages = weeklyData.slice(0, 40).map((week) => ({
     url: `${baseUrl}/week-by-week/${week.week}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
 
-  // Symptom pages
-  const symptomPages = symptomsData.map((symptom) => ({
+  // Symptom pages - limit to 45 (actual generated count)
+  const symptomPages = symptomsData.slice(0, 45).map((symptom) => ({
     url: `${baseUrl}/symptoms/${symptom.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Baby development pages
-  const babyDevPages = babyDevData.map((item) => ({
+  // Baby development pages - limit to 35 (actual generated count)
+  const babyDevPages = babyDevData.slice(0, 35).map((item) => ({
     url: `${baseUrl}/baby-development/${item.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Exercise pages
-  const exercisePages = exercisesData.map((exercise) => ({
+  // Exercise pages - limit to 23 (actual generated count)
+  const exercisePages = exercisesData.slice(0, 23).map((exercise) => ({
     url: `${baseUrl}/exercises/${exercise.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Medical test pages
-  const medicalTestPages = medicalTestsData.map((test) => ({
+  // Medical test pages - limit to 19 (actual generated count)
+  const medicalTestPages = medicalTestsData.slice(0, 19).map((test) => ({
     url: `${baseUrl}/medical-tests/${test.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Labor prep pages
-  const laborPrepPages = laborPrepData.map((topic) => ({
+  // Labor prep pages - limit to 23 (actual generated count)
+  const laborPrepPages = laborPrepData.slice(0, 23).map((topic) => ({
     url: `${baseUrl}/labor-prep/${topic.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Complication pages
-  const complicationPages = complicationsData.map((comp) => ({
+  // Complication pages - limit to 21 (actual generated count)
+  const complicationPages = complicationsData.slice(0, 21).map((comp) => ({
     url: `${baseUrl}/complications/${comp.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Calculator pages
-  const calculatorPages = calculatorsData.map((calc) => ({
+  // Calculator pages - limit to 11 (actual generated count)
+  const calculatorPages = calculatorsData.slice(0, 11).map((calc) => ({
     url: `${baseUrl}/calculators/${calc.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.7,
   }))
 
-  // Checklist pages
-  const checklistPages = checklistsData.map((checklist) => ({
+  // Checklist pages - limit to 9 (actual generated count)
+  const checklistPages = checklistsData.slice(0, 9).map((checklist) => ({
     url: `${baseUrl}/checklists/${checklist.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
