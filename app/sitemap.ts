@@ -45,7 +45,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : route === '/birth-plan' || route === '/birth-plan/builder' ? 0.8 : route === '/symptom-tracker' || route === '/symptom-tracker/checker' ? 0.8 : 0.8,
+    priority: route === '' ? 1 : route === '/complications' ? 0.85 : route === '/birth-plan' || route === '/birth-plan/builder' ? 0.8 : route === '/symptom-tracker' || route === '/symptom-tracker/checker' ? 0.8 : 0.8,
   }))
 
   // Week pages - limit to 40 weeks (actual generated count)
@@ -96,12 +96,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
-  // Complication pages - limit to 21 (actual generated count)
-  const complicationPages = complicationsData.slice(0, 21).map((comp) => ({
+  // Complication pages - limit to 22 (actual generated count)
+  const complicationPages = complicationsData.slice(0, 22).map((comp) => ({
     url: `${baseUrl}/complications/${comp.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
-    priority: 0.7,
+    priority: 0.85,
   }))
 
   // Calculator pages - limit to 11 (actual generated count)

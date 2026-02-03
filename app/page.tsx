@@ -126,6 +126,17 @@ export default function Home() {
             </h3>
             <p className="text-gray-600 text-sm">Create your personalized birth plan</p>
           </Link>
+
+          <Link
+            href="/complications"
+            className="bg-gradient-to-br from-red-50 to-orange-50 p-6 rounded-lg border-2 border-red-200 hover:shadow-xl transition-all group"
+          >
+            <div className="text-4xl mb-3">⚕️</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+              Complications Guide
+            </h3>
+            <p className="text-gray-600 text-sm">Understand symptoms and when to seek help</p>
+          </Link>
         </div>
 
         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">

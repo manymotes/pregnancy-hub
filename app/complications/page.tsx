@@ -25,6 +25,45 @@ export default function ComplicationsPage() {
         </p>
       </div>
 
+      {/* Symptom Checker */}
+      <div className="bg-gradient-to-br from-primary-50 to-blue-50 border-2 border-primary-200 rounded-lg p-6 mb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+          <span>🩺</span> Symptom Checker
+        </h2>
+        <p className="text-gray-700 mb-4">
+          Experiencing concerning symptoms? Use our symptom checker to learn about possible complications and when to seek care.
+        </p>
+        <div className="grid md:grid-cols-3 gap-4 mb-4">
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-2">Bleeding or Pain</h3>
+            <ul className="space-y-1 text-sm text-gray-600">
+              <li>• Vaginal bleeding</li>
+              <li>• Severe cramping</li>
+              <li>• Abdominal pain</li>
+            </ul>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-2">Pressure or Swelling</h3>
+            <ul className="space-y-1 text-sm text-gray-600">
+              <li>• High blood pressure</li>
+              <li>• Severe swelling</li>
+              <li>• Pelvic pressure</li>
+            </ul>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm">
+            <h3 className="font-bold text-gray-900 mb-2">Baby Movement</h3>
+            <ul className="space-y-1 text-sm text-gray-600">
+              <li>• Decreased movement</li>
+              <li>• No movement felt</li>
+              <li>• Unusual patterns</li>
+            </ul>
+          </div>
+        </div>
+        <p className="text-sm text-gray-600 italic">
+          Note: This checker is for educational purposes only. Always contact your healthcare provider for personalized medical advice.
+        </p>
+      </div>
+
       {/* Important Notice */}
       <div className="bg-red-50 border border-red-200 rounded-lg p-6 mb-12">
         <h2 className="text-2xl font-bold text-red-900 mb-3 flex items-center gap-2">
