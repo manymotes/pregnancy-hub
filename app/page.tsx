@@ -95,14 +95,14 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/symptoms-by-week"
+            href="/symptom-tracker"
             className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border-2 border-purple-200 hover:shadow-xl transition-all group"
           >
             <div className="text-4xl mb-3">💭</div>
             <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
-              Symptoms by Week
+              Symptom Tracker
             </h3>
-            <p className="text-gray-600 text-sm">Track symptoms throughout pregnancy</p>
+            <p className="text-gray-600 text-sm">Track and manage 12 common symptoms</p>
           </Link>
 
           <Link

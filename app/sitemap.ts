@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { weeklyData } from '@/lib/weekData'
 import { symptomsData } from '@/lib/symptomsData'
+import { symptomTrackerData } from '@/lib/symptomTrackerData'
 import { babyDevData } from '@/lib/babyDevelopmentData'
 import { exercisesData } from '@/lib/exercisesData'
 import { medicalTestsData } from '@/lib/medicalTestsData'
@@ -34,12 +35,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/calculators',
     '/checklists',
     '/compare-weeks',
+    '/symptom-tracker',
+    '/symptom-tracker/checker',
     '/about',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
+    priority: route === '' ? 1 : route === '/symptom-tracker' || route === '/symptom-tracker/checker' ? 0.8 : 0.8,
   }))
 
   // Week pages - limit to 40 weeks (actual generated count)
@@ -122,10 +125,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  // Symptom tracker pages - 12 detailed symptom guides
+  const symptomTrackerPages = symptomTrackerData.map((symptom) => ({
+    url: `${baseUrl}/symptom-tracker/${symptom.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
   return [
     ...routes,
     ...weekPages,
     ...symptomPages,
+    ...symptomTrackerPages,
     ...babyDevPages,
     ...exercisePages,
     ...medicalTestPages,
