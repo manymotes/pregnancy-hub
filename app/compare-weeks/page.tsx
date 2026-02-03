@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { weeklyData, type WeekData } from '@/lib/weekData'
+import { popularComparisons } from '@/lib/comparisonData'
 
 export default function CompareWeeksPage() {
   const [week1, setWeek1] = useState<number | null>(null)
@@ -10,6 +11,21 @@ export default function CompareWeeksPage() {
 
   const data1 = week1 ? weeklyData.find((w) => w.week === week1) : null
   const data2 = week2 ? weeklyData.find((w) => w.week === week2) : null
+
+  const comparisonInsights = useMemo(() => {
+    if (!data1 || !data2) return null
+
+    const weekDiff = Math.abs(data2.week - data1.week)
+    const trimesterChange = data1.trimester !== data2.trimester
+
+    return {
+      weekDiff,
+      trimesterChange,
+      trimesterText: trimesterChange
+        ? `Crossing from ${getOrdinal(data1.trimester)} to ${getOrdinal(data2.trimester)} trimester`
+        : `Both in ${getOrdinal(data1.trimester)} trimester`,
+    }
+  }, [data1, data2])
 
   const handleCompare = (e: React.FormEvent) => {
     e.preventDefault()
@@ -72,14 +88,96 @@ export default function CompareWeeksPage() {
       </form>
 
       {/* Comparison Results */}
-      {data1 && data2 && (
+      {data1 && data2 && comparisonInsights && (
         <div className="space-y-8">
-          {/* Baby Stats Comparison */}
+          {/* Comparison Insights */}
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
+            <div className="flex items-center gap-4 flex-wrap">
+              <div className="flex items-center gap-2">
+                <span className="text-3xl">📊</span>
+                <div>
+                  <div className="text-sm text-gray-600">Time Difference</div>
+                  <div className="text-lg font-semibold text-gray-900">
+                    {comparisonInsights.weekDiff} week{comparisonInsights.weekDiff !== 1 ? 's' : ''}
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-3xl">🔄</span>
+                <div>
+                  <div className="text-sm text-gray-600">Trimester</div>
+                  <div className="text-lg font-semibold text-gray-900">
+                    {comparisonInsights.trimesterText}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Baby Stats Comparison with Visual Chart */}
           <section>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Baby Size Comparison</h2>
+
+            {/* Visual Size Comparison Chart */}
+            <div className="bg-white rounded-lg shadow p-6 mb-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Growth Visualization</h3>
+              <div className="space-y-4">
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-gray-700">Week {data1.week}</span>
+                    <span className="text-sm text-gray-600">{data1.babySize}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-4">
+                    <div
+                      className="bg-primary-500 h-4 rounded-full transition-all duration-500"
+                      style={{ width: `${Math.min((data1.week / 40) * 100, 100)}%` }}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-sm font-medium text-gray-700">Week {data2.week}</span>
+                    <span className="text-sm text-gray-600">{data2.babySize}</span>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-4">
+                    <div
+                      className="bg-pink-500 h-4 rounded-full transition-all duration-500"
+                      style={{ width: `${Math.min((data2.week / 40) * 100, 100)}%` }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <WeekCard week={data1.week} data={data1} />
               <WeekCard week={data2.week} data={data2} />
+            </div>
+          </section>
+
+          {/* Key Changes Section */}
+          <section className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg p-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Changes Between Weeks</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="text-2xl">👶</span>
+                  Baby Development Changes
+                </h3>
+                <p className="text-sm text-gray-700">
+                  Between week {data1.week} and week {data2.week}, your baby continues to develop rapidly.
+                  Major milestones include organ development, sensory improvements, and growth in size.
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <span className="text-2xl">🤰</span>
+                  Physical Changes for Mom
+                </h3>
+                <p className="text-sm text-gray-700">
+                  Your body adapts to support your growing baby. Symptoms may vary, and your belly continues to expand as your baby grows.
+                </p>
+              </div>
             </div>
           </section>
 
@@ -224,19 +322,29 @@ export default function CompareWeeksPage() {
       {/* Popular Comparisons */}
       <section className="mt-12">
         <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Popular Comparisons</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <ComparisonButton week1={8} week2={12} setWeek1={setWeek1} setWeek2={setWeek2} />
-          <ComparisonButton week1={12} week2={20} setWeek1={setWeek1} setWeek2={setWeek2} />
-          <ComparisonButton week1={20} week2={28} setWeek1={setWeek1} setWeek2={setWeek2} />
-          <ComparisonButton week1={28} week2={36} setWeek1={setWeek1} setWeek2={setWeek2} />
-          <ComparisonButton week1={13} week2={27} setWeek1={setWeek1} setWeek2={setWeek2} />
-          <ComparisonButton week1={1} week2={40} setWeek1={setWeek1} setWeek2={setWeek2} />
-          <ComparisonButton week1={16} week2={20} setWeek1={setWeek1} setWeek2={setWeek2} />
-          <ComparisonButton week1={32} week2={40} setWeek1={setWeek1} setWeek2={setWeek2} />
+        <p className="text-center text-gray-600 mb-6">
+          Explore the most commonly searched pregnancy week comparisons
+        </p>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+          {popularComparisons.map((comp) => (
+            <ComparisonButtonLink
+              key={`${comp.week1}-${comp.week2}`}
+              week1={comp.week1}
+              week2={comp.week2}
+              label={comp.label}
+            />
+          ))}
         </div>
       </section>
     </div>
   )
+}
+
+function getOrdinal(n: number): string {
+  if (n === 1) return '1st'
+  if (n === 2) return '2nd'
+  if (n === 3) return '3rd'
+  return `${n}th`
 }
 
 function WeekCard({ week, data }: { week: number; data: WeekData }) {
@@ -280,6 +388,7 @@ function ComparisonButton({
       onClick={() => {
         setWeek1(week1)
         setWeek2(week2)
+        window.scrollTo({ top: 0, behavior: 'smooth' })
       }}
       className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-primary-300 transition-all text-center"
     >
@@ -288,5 +397,28 @@ function ComparisonButton({
       </div>
       <div className="text-xs text-gray-500 mt-1">Compare</div>
     </button>
+  )
+}
+
+function ComparisonButtonLink({
+  week1,
+  week2,
+  label,
+}: {
+  week1: number
+  week2: number
+  label: string
+}) {
+  const slug = `${week1}-vs-${week2}`
+  return (
+    <Link
+      href={`/compare-weeks/${slug}`}
+      className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-md hover:border-primary-300 transition-all text-center group"
+    >
+      <div className="text-sm font-semibold text-gray-900 group-hover:text-primary-600">
+        Week {week1} vs {week2}
+      </div>
+      <div className="text-xs text-gray-500 mt-1">{label}</div>
+    </Link>
   )
 }

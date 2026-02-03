@@ -8,6 +8,7 @@ import { laborPrepData } from '@/lib/laborPrepData'
 import { complicationsData } from '@/lib/complicationsData'
 import { calculatorsData } from '@/lib/calculatorsData'
 import { checklistsData } from '@/lib/checklistsData'
+import { popularComparisons } from '@/lib/comparisonData'
 import { POPULAR_TOPICS, TOPICS } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -113,6 +114,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }))
 
+  // Comparison pages - all 50 popular comparisons
+  const comparisonPages = popularComparisons.map((comparison) => ({
+    url: `${baseUrl}/compare-weeks/${comparison.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }))
+
   return [
     ...routes,
     ...weekPages,
@@ -124,5 +133,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...complicationPages,
     ...calculatorPages,
     ...checklistPages,
+    ...comparisonPages,
   ]
 }
