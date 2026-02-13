@@ -1,4 +1,71 @@
 import Link from 'next/link'
+import Script from 'next/script'
+import { SITE_URL } from '@/lib/constants'
+import { getBreadcrumbSchema, organizationData, medicalReviewers } from '@/lib/authorsData'
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Home', url: SITE_URL },
+  { name: 'Nutrition', url: `${SITE_URL}/nutrition` },
+])
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Pregnancy Nutrition Guide',
+  headline: 'Pregnancy Nutrition Guide - What to Eat While Pregnant',
+  description: 'Complete pregnancy nutrition guide including foods to eat, foods to avoid, vitamins, and meal planning for a healthy pregnancy.',
+  url: `${SITE_URL}/nutrition`,
+  datePublished: '2024-01-15T00:00:00.000Z',
+  dateModified: new Date().toISOString(),
+  medicalSpecialty: 'Obstetrics and Gynaecology',
+  about: {
+    '@type': 'MedicalCondition',
+    name: 'Pregnancy',
+  },
+  author: organizationData,
+  publisher: {
+    '@type': 'Organization',
+    name: organizationData.name,
+    logo: organizationData.logo,
+    url: organizationData.url,
+  },
+  reviewedBy: medicalReviewers.map((reviewer) => ({
+    '@type': 'Person',
+    name: reviewer.name,
+    jobTitle: reviewer.jobTitle,
+    url: reviewer.url,
+  })),
+  medicalAudience: {
+    '@type': 'MedicalAudience',
+    audienceType: 'Patient',
+    healthCondition: {
+      '@type': 'MedicalCondition',
+      name: 'Pregnancy',
+    },
+  },
+  hasPart: [
+    {
+      '@type': 'WebPageElement',
+      name: 'Essential Nutrients',
+      description: 'Key nutrients needed during pregnancy including folic acid, iron, calcium, and DHA',
+    },
+    {
+      '@type': 'WebPageElement',
+      name: 'Foods to Eat',
+      description: 'Healthy foods recommended during pregnancy',
+    },
+    {
+      '@type': 'WebPageElement',
+      name: 'Foods to Avoid',
+      description: 'Foods that should be avoided during pregnancy for safety',
+    },
+    {
+      '@type': 'WebPageElement',
+      name: 'Hydration',
+      description: 'Importance of staying hydrated during pregnancy',
+    },
+  ],
+}
 
 export const metadata = {
   title: 'Pregnancy Nutrition Guide - What to Eat While Pregnant',
@@ -7,7 +74,18 @@ export const metadata = {
 
 export default function NutritionPage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Script
+        id="page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <h1 className="text-4xl font-bold text-gray-900 mb-6">
         🥗 Pregnancy Nutrition Guide
       </h1>
@@ -281,6 +359,7 @@ export default function NutritionPage() {
           View Week by Week Guide
         </Link>
       </div>
-    </div>
+      </div>
+    </>
   )
 }

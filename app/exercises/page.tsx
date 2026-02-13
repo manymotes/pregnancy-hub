@@ -1,5 +1,77 @@
 import Link from 'next/link'
+import Script from 'next/script'
 import { exercisesData } from '@/lib/exercisesData'
+import { SITE_URL } from '@/lib/constants'
+import { getBreadcrumbSchema, organizationData, medicalReviewers } from '@/lib/authorsData'
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Home', url: SITE_URL },
+  { name: 'Exercises', url: `${SITE_URL}/exercises` },
+])
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Pregnancy Exercise & Fitness Guide',
+  headline: 'Pregnancy Exercises & Fitness Guide - Safe Workouts for All Trimesters',
+  description: 'Comprehensive guide to safe pregnancy exercises including yoga, walking, swimming, strength training, and more. Exercise routines for every trimester.',
+  url: `${SITE_URL}/exercises`,
+  datePublished: '2024-01-15T00:00:00.000Z',
+  dateModified: new Date().toISOString(),
+  medicalSpecialty: 'Obstetrics and Gynaecology',
+  about: {
+    '@type': 'MedicalCondition',
+    name: 'Pregnancy',
+  },
+  author: organizationData,
+  publisher: {
+    '@type': 'Organization',
+    name: organizationData.name,
+    logo: organizationData.logo,
+    url: organizationData.url,
+  },
+  reviewedBy: medicalReviewers.map((reviewer) => ({
+    '@type': 'Person',
+    name: reviewer.name,
+    jobTitle: reviewer.jobTitle,
+    url: reviewer.url,
+  })),
+  medicalAudience: {
+    '@type': 'MedicalAudience',
+    audienceType: 'Patient',
+    healthCondition: {
+      '@type': 'MedicalCondition',
+      name: 'Pregnancy',
+    },
+  },
+  hasPart: [
+    {
+      '@type': 'WebPageElement',
+      name: 'Cardiovascular Exercise',
+      description: 'Low-impact cardio workouts safe for pregnancy',
+    },
+    {
+      '@type': 'WebPageElement',
+      name: 'Strength Training',
+      description: 'Safe strength exercises during pregnancy',
+    },
+    {
+      '@type': 'WebPageElement',
+      name: 'Flexibility & Stretching',
+      description: 'Gentle stretches for pregnancy',
+    },
+    {
+      '@type': 'WebPageElement',
+      name: 'Pelvic Floor Exercises',
+      description: 'Essential exercises for pelvic health',
+    },
+    {
+      '@type': 'WebPageElement',
+      name: 'Safety Guidelines',
+      description: 'Important safety guidelines for exercising during pregnancy',
+    },
+  ],
+}
 
 export const metadata = {
   title: 'Pregnancy Exercises & Fitness Guide - Safe Workouts for All Trimesters',
@@ -14,7 +86,18 @@ export default function ExercisesPage() {
   const relaxationExercises = exercisesData.filter((ex) => ex.category === 'relaxation')
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Script
+        id="page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -271,6 +354,7 @@ export default function ExercisesPage() {
           </li>
         </ul>
       </div>
-    </div>
+      </div>
+    </>
   )
 }

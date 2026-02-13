@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { getWeekData, weeklyData } from '@/lib/weekData'
-import { TRIMESTERS } from '@/lib/constants'
+import { TRIMESTERS, SITE_URL } from '@/lib/constants'
 import { notFound } from 'next/navigation'
 import { getTestimonialForWeek } from '@/lib/testimonialsData'
 import { getFAQsForWeek } from '@/lib/faqsData'
+import { organizationData, medicalReviewers } from '@/lib/authorsData'
 
 export async function generateStaticParams() {
   return weeklyData.map((week) => ({
@@ -21,9 +22,32 @@ export async function generateMetadata({ params }: { params: { week: string } })
     }
   }
 
+  const currentDate = new Date().toISOString().split('T')[0]
+
   return {
     title: `Week ${weekNum} of Pregnancy - Baby Size: ${data.babySize}`,
     description: `Pregnancy week ${weekNum}: Your baby is the size of ${data.babySize.toLowerCase()}. Learn about baby development, symptoms, and what to expect this week.`,
+    alternates: {
+      canonical: `${SITE_URL}/week-by-week/${weekNum}`,
+    },
+    openGraph: {
+      title: `Week ${weekNum} of Pregnancy - Baby Size: ${data.babySize}`,
+      description: `Pregnancy week ${weekNum}: Your baby is the size of ${data.babySize.toLowerCase()}. Learn about baby development, symptoms, and what to expect this week.`,
+      url: `${SITE_URL}/week-by-week/${weekNum}`,
+      siteName: 'MyPregnancyWeek',
+      type: 'article',
+      publishedTime: '2024-01-15T00:00:00.000Z',
+      modifiedTime: currentDate,
+      tags: ['pregnancy', `week ${weekNum}`, 'baby development', 'pregnancy symptoms', data.babySize],
+      images: [
+        {
+          url: `${SITE_URL}/images/og/week-${weekNum}.jpg`,
+          width: 1200,
+          height: 630,
+          alt: `Week ${weekNum} of Pregnancy - Baby Size: ${data.babySize}`,
+        },
+      ],
+    },
   }
 }
 
@@ -464,11 +488,74 @@ export default function WeekPage({ params }: { params: { week: string } }) {
             '@context': 'https://schema.org',
             '@type': 'MedicalWebPage',
             name: `Week ${weekNum} of Pregnancy`,
+            headline: `Week ${weekNum} of Pregnancy - Baby Size: ${data.babySize}`,
             description: `Pregnancy week ${weekNum}: Your baby is the size of ${data.babySize.toLowerCase()}. Learn about baby development, symptoms, and what to expect this week.`,
+            url: `${SITE_URL}/week-by-week/${weekNum}`,
+            datePublished: '2024-01-15T00:00:00.000Z',
+            dateModified: new Date().toISOString(),
+            medicalSpecialty: 'Obstetrics and Gynaecology',
             about: {
               '@type': 'MedicalCondition',
               name: 'Pregnancy',
+              associatedAnatomy: {
+                '@type': 'AnatomicalStructure',
+                name: 'Uterus',
+              },
             },
+            author: organizationData,
+            publisher: {
+              '@type': 'Organization',
+              name: organizationData.name,
+              logo: organizationData.logo,
+              url: organizationData.url,
+            },
+            reviewedBy: medicalReviewers.map((reviewer) => ({
+              '@type': 'Person',
+              name: reviewer.name,
+              jobTitle: reviewer.jobTitle,
+              description: reviewer.description,
+              url: reviewer.url,
+            })),
+            medicalAudience: {
+              '@type': 'MedicalAudience',
+              audienceType: 'Patient',
+              healthCondition: {
+                '@type': 'MedicalCondition',
+                name: 'Pregnancy',
+              },
+            },
+            hasPart: [
+              {
+                '@type': 'WebPageElement',
+                name: 'Baby Development',
+                description: `Baby development milestones at week ${weekNum} of pregnancy`,
+              },
+              {
+                '@type': 'WebPageElement',
+                name: 'Baby Stats',
+                description: `Baby size: ${data.babySize}, Length: ${data.babyLength}, Weight: ${data.babyWeight}`,
+              },
+              {
+                '@type': 'WebPageElement',
+                name: 'Common Symptoms',
+                description: `Common pregnancy symptoms during week ${weekNum}`,
+              },
+              {
+                '@type': 'WebPageElement',
+                name: 'Nutrition Tips',
+                description: `Nutrition recommendations for week ${weekNum} of pregnancy`,
+              },
+              {
+                '@type': 'WebPageElement',
+                name: 'Weekly Checklist',
+                description: `To-do list and checklist for pregnancy week ${weekNum}`,
+              },
+              {
+                '@type': 'WebPageElement',
+                name: 'When to Call Your Doctor',
+                description: 'Warning signs that require medical attention',
+              },
+            ],
             mainEntity: {
               '@type': 'HowTo',
               name: `How to Navigate Week ${weekNum} of Pregnancy`,
@@ -480,19 +567,6 @@ export default function WeekPage({ params }: { params: { week: string } }) {
                 text: item,
               })),
             },
-            ...(faqs.length > 0 && {
-              mainEntity: {
-                '@type': 'FAQPage',
-                mainEntity: faqs.map((faq) => ({
-                  '@type': 'Question',
-                  name: faq.question,
-                  acceptedAnswer: {
-                    '@type': 'Answer',
-                    text: faq.answer,
-                  },
-                })),
-              },
-            }),
             breadcrumb: {
               '@type': 'BreadcrumbList',
               itemListElement: [
@@ -500,25 +574,45 @@ export default function WeekPage({ params }: { params: { week: string } }) {
                   '@type': 'ListItem',
                   position: 1,
                   name: 'Home',
-                  item: 'https://pregnancyhub.com',
+                  item: SITE_URL,
                 },
                 {
                   '@type': 'ListItem',
                   position: 2,
                   name: 'Week by Week',
-                  item: 'https://pregnancyhub.com/week-by-week',
+                  item: `${SITE_URL}/week-by-week`,
                 },
                 {
                   '@type': 'ListItem',
                   position: 3,
                   name: `Week ${weekNum}`,
-                  item: `https://pregnancyhub.com/week-by-week/${weekNum}`,
+                  item: `${SITE_URL}/week-by-week/${weekNum}`,
                 },
               ],
             },
           }),
         }}
       />
+      {/* FAQ Schema (separate for better SEO) */}
+      {faqs.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map((faq) => ({
+                '@type': 'Question',
+                name: faq.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: faq.answer,
+                },
+              })),
+            }),
+          }}
+        />
+      )}
     </div>
   )
 }

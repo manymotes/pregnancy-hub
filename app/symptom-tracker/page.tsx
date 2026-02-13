@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import Script from 'next/script'
 import { symptomTrackerData, symptomCategories } from '@/lib/symptomTrackerData'
+import { SITE_URL } from '@/lib/constants'
+import { getBreadcrumbSchema, organizationData, medicalReviewers } from '@/lib/authorsData'
 
 export const metadata = {
   title: 'Pregnancy Symptom Tracker - Track & Manage Your Symptoms Week by Week',
@@ -8,6 +10,48 @@ export const metadata = {
   openGraph: {
     title: 'Pregnancy Symptom Tracker - Track & Manage Your Symptoms',
     description: 'Track pregnancy symptoms week by week with expert advice on relief strategies and warning signs.',
+  },
+}
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Home', url: SITE_URL },
+  { name: 'Symptom Tracker', url: `${SITE_URL}/symptom-tracker` },
+])
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  name: 'Pregnancy Symptom Tracker',
+  headline: 'Pregnancy Symptom Tracker - Track & Manage Your Symptoms Week by Week',
+  description: 'Comprehensive pregnancy symptom tracker with detailed guides for 12 common symptoms including morning sickness, fatigue, back pain, and more.',
+  url: `${SITE_URL}/symptom-tracker`,
+  datePublished: '2024-01-15T00:00:00.000Z',
+  dateModified: new Date().toISOString(),
+  medicalSpecialty: 'Obstetrics and Gynaecology',
+  about: {
+    '@type': 'MedicalCondition',
+    name: 'Pregnancy',
+  },
+  author: organizationData,
+  publisher: {
+    '@type': 'Organization',
+    name: organizationData.name,
+    logo: organizationData.logo,
+    url: organizationData.url,
+  },
+  reviewedBy: medicalReviewers.map((reviewer) => ({
+    '@type': 'Person',
+    name: reviewer.name,
+    jobTitle: reviewer.jobTitle,
+    url: reviewer.url,
+  })),
+  medicalAudience: {
+    '@type': 'MedicalAudience',
+    audienceType: 'Patient',
+    healthCondition: {
+      '@type': 'MedicalCondition',
+      name: 'Pregnancy',
+    },
   },
 }
 
@@ -69,6 +113,16 @@ export default function SymptomTrackerPage() {
 
   return (
     <>
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Script
+        id="page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
       <Script
         id="faq-schema"
         type="application/ld+json"

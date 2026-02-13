@@ -1,9 +1,37 @@
 import Link from 'next/link'
+import Script from 'next/script'
 import { calculatorsData } from '@/lib/calculatorsData'
+import { SITE_URL } from '@/lib/constants'
+import { getBreadcrumbSchema, organizationData } from '@/lib/authorsData'
 
 export const metadata = {
   title: 'Pregnancy Calculators & Tools - Due Date, Weight Gain, Contraction Timer',
   description: 'Essential pregnancy calculators and tools including due date calculator, weight gain tracker, contraction timer, kick counter, and more.',
+}
+
+const breadcrumbSchema = getBreadcrumbSchema([
+  { name: 'Home', url: SITE_URL },
+  { name: 'Calculators', url: `${SITE_URL}/calculators` },
+])
+
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Pregnancy Calculators & Tools',
+  description: 'Essential pregnancy calculators and tools including due date calculator, weight gain tracker, contraction timer, kick counter, and more.',
+  url: `${SITE_URL}/calculators`,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: 'MyPregnancyWeek',
+    url: SITE_URL,
+  },
+  author: organizationData,
+  publisher: {
+    '@type': 'Organization',
+    name: organizationData.name,
+    logo: organizationData.logo,
+    url: organizationData.url,
+  },
 }
 
 export default function CalculatorsPage() {
@@ -13,7 +41,18 @@ export default function CalculatorsPage() {
   const planningTools = calculatorsData.filter((calc) => calc.category === 'planning')
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <>
+      <Script
+        id="breadcrumb-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <Script
+        id="page-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -149,6 +188,7 @@ export default function CalculatorsPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
