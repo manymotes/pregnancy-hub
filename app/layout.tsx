@@ -4,6 +4,9 @@ import Script from 'next/script'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
+import QuickActions from '@/components/QuickActions'
+import ReadingProgress from '@/components/ReadingProgress'
+import BackToTop from '@/components/BackToTop'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants'
 import { siteConfig } from '@/lib/config'
@@ -18,9 +21,6 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   keywords: ['pregnancy', 'pregnancy week by week', 'baby development', 'pregnancy symptoms', 'pregnancy calculator', 'due date calculator', 'pregnancy guide', 'prenatal care', 'fetal development', 'expecting baby'],
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: SITE_URL,
-  },
   icons: {
     icon: '/icon.svg',
   },
@@ -66,9 +66,12 @@ export default function RootLayout({
             strategy="lazyOnload"
           />
         )}
+        <ReadingProgress />
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1">{children}</main>
+          <QuickActions variant="sticky" />
+          <BackToTop />
           <Footer />
         </div>
       </body>

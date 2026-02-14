@@ -66,6 +66,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pregnancy Readiness Quiz CTA */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <Link href="/quiz/pregnancy-readiness" className="block group">
+          <div className="bg-gradient-to-r from-primary-50 via-pink-50 to-purple-50 border-2 border-primary-200 rounded-2xl p-8 hover:shadow-xl transition-all">
+            <div className="flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+              <div className="flex-shrink-0">
+                <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center text-5xl shadow-md group-hover:scale-110 transition-transform">
+                  🤰
+                </div>
+              </div>
+              <div className="flex-grow">
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+                  <span className="px-3 py-1 bg-primary-100 text-primary-700 text-xs font-medium rounded-full">
+                    Free Quiz
+                  </span>
+                  <span className="text-gray-500 text-sm">2 min</span>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                  What&apos;s Your Pregnancy Profile?
+                </h2>
+                <p className="text-gray-600">
+                  Take our quick quiz to get personalized guidance, resources, and tips tailored to your unique pregnancy journey.
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <div className="w-12 h-12 bg-white border-2 border-gray-200 rounded-full flex items-center justify-center group-hover:bg-primary-600 group-hover:border-primary-600 group-hover:text-white transition-all text-gray-400 text-xl">
+                  →
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </section>
+
       {/* Quick Access Navigation */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
@@ -95,14 +129,14 @@ export default function Home() {
           </Link>
 
           <Link
-            href="/symptom-tracker"
+            href="/symptoms"
             className="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-lg border-2 border-purple-200 hover:shadow-xl transition-all group"
           >
             <div className="text-4xl mb-3">💭</div>
             <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
-              Symptom Tracker
+              Symptoms Guide
             </h3>
-            <p className="text-gray-600 text-sm">Track and manage 12 common symptoms</p>
+            <p className="text-gray-600 text-sm">100+ symptoms with week-by-week guidance</p>
           </Link>
 
           <Link

@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { weeklyData } from '@/lib/weekData'
 import { symptomsData } from '@/lib/symptomsData'
 import { symptomTrackerData } from '@/lib/symptomTrackerData'
+import { generateAllSymptomWeekPages, comprehensiveSymptoms } from '@/lib/symptomsWeekData'
 import { babyDevData } from '@/lib/babyDevelopmentData'
 import { exercisesData } from '@/lib/exercisesData'
 import { medicalTestsData } from '@/lib/medicalTestsData'
@@ -144,11 +145,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+
+  // Symptom x Week pages - ~4000 pages (100 symptoms x ~40 weeks average)
+  const symptomWeekPages = generateAllSymptomWeekPages().map(({ symptom, week }) => ({
+    url: `${baseUrl}/symptoms/${symptom}/week-${week}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }))
+
+  // Symptom relief pages - 100 relief guides
+  const symptomReliefPages = comprehensiveSymptoms.map((symptom) => ({
+    url: `${baseUrl}/symptoms/relief/${symptom.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.75,
+  }))
+
+  // Trimester symptom pages - 3 trimester overview pages
+  const trimesterSymptomPages = [1, 2, 3].map((trimester) => ({
+    url: `${baseUrl}/symptoms/by-trimester/${trimester}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }))
+
   return [
     ...routes,
     ...weekPages,
     ...symptomPages,
     ...symptomTrackerPages,
+    ...symptomWeekPages,
+    ...symptomReliefPages,
+    ...trimesterSymptomPages,
     ...babyDevPages,
     ...exercisePages,
     ...medicalTestPages,

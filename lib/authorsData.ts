@@ -89,7 +89,6 @@ export function getReviewerSchema(reviewerIndex: number = 0) {
 // Get author schema for organization
 export function getAuthorSchema() {
   return {
-    '@type': 'Organization',
     ...organizationData,
   }
 }
