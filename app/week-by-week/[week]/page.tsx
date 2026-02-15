@@ -24,9 +24,14 @@ export async function generateMetadata({ params }: { params: { week: string } })
 
   const currentDate = new Date().toISOString().split('T')[0]
 
+  // Format baby size for title (handle "a" vs "an" grammar)
+  const babySizeLower = data.babySize.toLowerCase()
+  const startsWithVowel = /^[aeiou]/i.test(data.babySize)
+  const article = startsWithVowel ? 'an' : 'a'
+
   return {
-    title: `Week ${weekNum} of Pregnancy - Baby Size: ${data.babySize}`,
-    description: `Pregnancy week ${weekNum}: Your baby is the size of ${data.babySize.toLowerCase()}. Learn about baby development, symptoms, and what to expect this week.`,
+    title: `${weekNum} Weeks Pregnant: Baby Size of ${article} ${data.babySize} | Week ${weekNum}`,
+    description: `At ${weekNum} weeks pregnant, your baby is the size of ${article} ${babySizeLower}. Discover week ${weekNum} symptoms, baby development milestones, and what to expect.`,
     alternates: {
       canonical: `${SITE_URL}/week-by-week/${weekNum}`,
     },

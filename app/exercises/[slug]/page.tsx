@@ -20,8 +20,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${data.title} During Pregnancy - Safe Exercise Guide`,
     description: data.shortDescription,
+    alternates: {
+      canonical: `https://mypregnancyweek.com/exercises/${params.slug}`,
+    },
     openGraph: {
-      title: `${data.title} During Pregnancy`,
+      title: `${data.title} During Pregnancy - Safe Exercise Guide`,
       description: data.shortDescription,
     },
   }
