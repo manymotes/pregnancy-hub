@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { weeklyData } from '@/lib/weekData'
+import { SITE_URL } from '@/lib/constants'
 
 export const metadata = {
   title: 'Pregnancy Symptoms by Week - Complete Timeline | Pregnancy Hub',
@@ -225,7 +226,7 @@ export default function SymptomsByWeekPage() {
                 '@type': 'ListItem',
                 position: index + 1,
                 name: `Week ${week.week} Pregnancy Symptoms`,
-                url: `https://pregnancyhub.com/week-by-week/${week.week}`,
+                url: `${SITE_URL}/week-by-week/${week.week}`,
               })),
             },
           }),

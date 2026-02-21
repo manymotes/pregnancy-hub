@@ -1,12 +1,13 @@
 // Author and Medical Reviewer Data for E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
+import { SITE_URL } from './constants'
 
 export const organizationData = {
   '@type': 'Organization',
   name: 'MyPregnancyWeek',
-  url: 'https://mypregnancyweek.com',
+  url: SITE_URL,
   logo: {
     '@type': 'ImageObject',
-    url: 'https://mypregnancyweek.com/images/logo.png',
+    url: `${SITE_URL}/images/logo.png`,
     width: 512,
     height: 512,
   },
@@ -26,7 +27,7 @@ export const medicalReviewers = [
     name: 'Dr. Sarah Mitchell, MD, OB-GYN',
     jobTitle: 'Board-Certified Obstetrician-Gynecologist',
     description: 'Dr. Sarah Mitchell is a board-certified OB-GYN with over 15 years of experience in maternal-fetal medicine. She has delivered over 3,000 babies and specializes in high-risk pregnancies.',
-    url: 'https://mypregnancyweek.com/about/medical-team#dr-sarah-mitchell',
+    url: `${SITE_URL}/about/medical-team#dr-sarah-mitchell`,
     alumniOf: {
       '@type': 'CollegeOrUniversity',
       name: 'Johns Hopkins University School of Medicine',
@@ -48,7 +49,7 @@ export const medicalReviewers = [
     name: 'Dr. Emily Chen, MD, FACOG',
     jobTitle: 'Board-Certified Obstetrician-Gynecologist',
     description: 'Dr. Emily Chen is a board-certified OB-GYN and Fellow of ACOG with expertise in prenatal diagnostics and women\'s health. She has published extensively on pregnancy nutrition and fetal development.',
-    url: 'https://mypregnancyweek.com/about/medical-team#dr-emily-chen',
+    url: `${SITE_URL}/about/medical-team#dr-emily-chen`,
     alumniOf: {
       '@type': 'CollegeOrUniversity',
       name: 'Stanford University School of Medicine',
@@ -66,7 +67,7 @@ export const medicalReviewers = [
     name: 'Jennifer Roberts, CNM, MSN',
     jobTitle: 'Certified Nurse-Midwife',
     description: 'Jennifer Roberts is a Certified Nurse-Midwife with over 12 years of experience supporting women through pregnancy, labor, and postpartum. She specializes in holistic and natural approaches to childbirth.',
-    url: 'https://mypregnancyweek.com/about/medical-team#jennifer-roberts',
+    url: `${SITE_URL}/about/medical-team#jennifer-roberts`,
     alumniOf: {
       '@type': 'CollegeOrUniversity',
       name: 'Yale University School of Nursing',

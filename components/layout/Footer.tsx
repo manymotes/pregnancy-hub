@@ -127,11 +127,31 @@ export function Footer() {
           </ul>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-sm text-gray-400">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+        {/* Medical Disclaimer & Source Attribution */}
+        <div className="border-t border-gray-800 mt-8 pt-8">
+          <div className="bg-gray-800 rounded-lg p-4 mb-6">
+            <p className="text-xs text-gray-300 mb-2">
+              <strong className="text-white">Medical Disclaimer:</strong> This content is for informational purposes only and is NOT medical advice. Always consult your healthcare provider, OB-GYN, or midwife for personalized medical guidance.
+            </p>
+            <p className="text-xs text-gray-400">
+              Information aligned with{' '}
+              <a
+                href="https://www.acog.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-400 hover:text-primary-300 underline"
+              >
+                ACOG (American College of Obstetricians and Gynecologists)
+              </a>{' '}
+              guidelines. For medical emergencies, call 911.
+            </p>
+          </div>
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
             <p>&copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
             <p className="mt-2 md:mt-0">
-              For informational purposes only. Consult your healthcare provider for medical advice.
+              <Link href="/about" className="hover:text-white underline">
+                About Us & Medical Disclaimer
+              </Link>
             </p>
           </div>
         </div>

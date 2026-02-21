@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getExerciseData, exercisesData } from '@/lib/exercisesData'
 import { notFound } from 'next/navigation'
+import { SITE_URL } from '@/lib/constants'
 
 export async function generateStaticParams() {
   return exercisesData.map((exercise) => ({
@@ -21,7 +22,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     title: `${data.title} During Pregnancy - Safe Exercise Guide`,
     description: data.shortDescription,
     alternates: {
-      canonical: `https://mypregnancyweek.com/exercises/${params.slug}`,
+      canonical: `${SITE_URL}/exercises/${params.slug}`,
     },
     openGraph: {
       title: `${data.title} During Pregnancy - Safe Exercise Guide`,

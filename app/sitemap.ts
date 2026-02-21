@@ -12,10 +12,10 @@ import { calculatorsData } from '@/lib/calculatorsData'
 import { checklistsData } from '@/lib/checklistsData'
 import { popularComparisons } from '@/lib/comparisonData'
 import { birthPlanData } from '@/lib/birthPlanData'
-import { POPULAR_TOPICS, TOPICS } from '@/lib/constants'
+import { POPULAR_TOPICS, TOPICS, SITE_URL } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://mypregnancyweek.com'
+  const baseUrl = SITE_URL
 
   // Base pages
   const routes = [
