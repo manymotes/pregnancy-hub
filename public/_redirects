@@ -1,0 +1,6 @@
+# Cloudflare Pages Redirects for My Pregnancy Week
+
+# Force HTTPS and redirect www to non-www (canonical domain)
+https://www.mypregnancyweek.com/* https://mypregnancyweek.com/:splat 301!
+http://www.mypregnancyweek.com/* https://mypregnancyweek.com/:splat 301!
+http://mypregnancyweek.com/* https://mypregnancyweek.com/:splat 301!

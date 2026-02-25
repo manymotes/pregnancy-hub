@@ -1,17 +1,36 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
+import dynamic from 'next/dynamic'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
-import { MedicalDisclaimerBanner } from '@/components/MedicalDisclaimerBanner'
-import QuickActions from '@/components/QuickActions'
-import ReadingProgress from '@/components/ReadingProgress'
-import BackToTop from '@/components/BackToTop'
 import { GoogleAnalytics } from '@/components/analytics/GoogleAnalytics'
 import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from '@/lib/constants'
 import { siteConfig } from '@/lib/config'
-import AdsterraAd from '@/components/AdsterraAd'
+
+// Dynamically import non-critical client components to reduce initial JS bundle
+// These components are not needed for LCP or SEO, so we defer their loading
+const MedicalDisclaimerBanner = dynamic(
+  () => import('@/components/MedicalDisclaimerBanner').then(mod => mod.MedicalDisclaimerBanner),
+  { ssr: false }
+)
+const QuickActions = dynamic(
+  () => import('@/components/QuickActions'),
+  { ssr: false }
+)
+const ReadingProgress = dynamic(
+  () => import('@/components/ReadingProgress'),
+  { ssr: false }
+)
+const BackToTop = dynamic(
+  () => import('@/components/BackToTop'),
+  { ssr: false }
+)
+const AdsterraAd = dynamic(
+  () => import('@/components/AdsterraAd'),
+  { ssr: false }
+)
 
 const inter = Inter({ subsets: ['latin'] })
 
