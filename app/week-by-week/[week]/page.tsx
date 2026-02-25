@@ -30,8 +30,8 @@ export async function generateMetadata({ params }: { params: { week: string } })
   const article = startsWithVowel ? 'an' : 'a'
 
   return {
-    title: `${weekNum} Weeks Pregnant: Baby Size of ${article} ${data.babySize} | Week ${weekNum}`,
-    description: `At ${weekNum} weeks pregnant, your baby is the size of ${article} ${babySizeLower}. Discover week ${weekNum} symptoms, baby development milestones, and what to expect.`,
+    title: `${weekNum} Weeks Pregnant: Symptoms & Baby Size (2026)`,
+    description: `${weekNum} weeks pregnant: baby is ${article} ${babySizeLower}. Week ${weekNum} symptoms, development milestones, and what to expect in 2026.`,
     alternates: {
       canonical: `${SITE_URL}/week-by-week/${weekNum}`,
     },

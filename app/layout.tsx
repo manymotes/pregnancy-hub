@@ -32,7 +32,10 @@ const AdsterraAd = dynamic(
   { ssr: false }
 )
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap', // Ensure text remains visible during webfont load
+})
 
 export const metadata: Metadata = {
   title: {
@@ -76,6 +79,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Resource hints for third-party domains - preconnect establishes early connections */}
+        {/* Google Analytics & Tag Manager */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+
+        {/* Google AdSense */}
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://tpc.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
+
+        {/* Google Fonts (used by next/font) */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+
+        {/* Adsterra Ad Network */}
+        <link rel="preconnect" href="https://pl28758900.effectivegatecpm.com" />
+        <link rel="dns-prefetch" href="https://pl28758900.effectivegatecpm.com" />
+      </head>
       <body className={`${inter.className} antialiased bg-gray-50`}>
         <GoogleAnalytics />
         {/* AdSense Script */}
