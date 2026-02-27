@@ -1,12 +1,25 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useCallback, memo } from 'react'
 import { SITE_NAME } from '@/lib/constants'
 
-export function Header() {
+function HeaderComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isResourcesOpen, setIsResourcesOpen] = useState(false)
+
+  // Memoize handlers to prevent unnecessary re-renders
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev)
+  }, [])
+
+  const toggleResources = useCallback(() => {
+    setIsResourcesOpen(prev => !prev)
+  }, [])
+
+  const closeResources = useCallback(() => {
+    setTimeout(() => setIsResourcesOpen(false), 200)
+  }, [])
 
   return (
     <header className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -34,8 +47,8 @@ export function Header() {
             {/* Resources Dropdown */}
             <div className="relative">
               <button
-                onClick={() => setIsResourcesOpen(!isResourcesOpen)}
-                onBlur={() => setTimeout(() => setIsResourcesOpen(false), 200)}
+                onClick={toggleResources}
+                onBlur={closeResources}
                 className="text-gray-600 hover:text-primary-600 transition-colors flex items-center gap-1"
               >
                 Resources
@@ -91,7 +104,7 @@ export function Header() {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              onClick={toggleMenu}
               className="text-gray-600 hover:text-gray-900"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,3 +177,6 @@ export function Header() {
     </header>
   )
 }
+
+// Export memoized component for performance
+export const Header = memo(HeaderComponent)

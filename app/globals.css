@@ -370,3 +370,166 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+/* ==========================================================================
+   CLS Prevention - Prevent Cumulative Layout Shift
+   ========================================================================== */
+
+/* Reserve space for dynamically loaded content */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+/* Ad container placeholders to prevent CLS */
+.adsterra-container {
+  min-height: 90px; /* Minimum height for ad unit */
+  contain: layout style; /* CSS containment for performance */
+}
+
+/* Header skeleton - maintain fixed height */
+header {
+  min-height: 64px; /* Match actual header height */
+  contain: layout; /* Prevent content from affecting layout outside */
+}
+
+/* Footer skeleton - reserve space while loading */
+footer {
+  min-height: 400px; /* Approximate footer height */
+}
+
+/* Medical disclaimer banner - fixed height when visible */
+.medical-disclaimer-banner {
+  min-height: 40px;
+}
+
+/* Progress bar container - fixed height */
+.reading-progress-container {
+  height: 4px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+/* Back to top button - fixed dimensions */
+.back-to-top-btn {
+  width: 44px;
+  height: 44px;
+}
+
+/* Quick actions mobile nav - fixed height */
+.quick-actions-sticky {
+  min-height: 64px;
+}
+
+/* Card containers - reserve minimum height */
+.week-card {
+  min-height: 120px;
+}
+
+.topic-card {
+  min-height: 140px;
+}
+
+/* Quiz container - prevent shifts during question transitions */
+.quiz-container {
+  min-height: 400px;
+}
+
+/* Emoji icon containers - fixed dimensions */
+.emoji-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+}
+
+/* Large emoji icons - consistent sizing */
+.emoji-icon-lg {
+  width: 2em;
+  height: 2em;
+}
+
+.emoji-icon-xl {
+  width: 3em;
+  height: 3em;
+}
+
+/* Baby size indicator - fixed aspect ratio */
+.baby-size {
+  aspect-ratio: 1 / 1; /* Keep circular shape */
+}
+
+/* Grid containers - prevent reflow */
+.grid {
+  contain: layout;
+}
+
+/* Section spacing with stable dimensions */
+.section-stable {
+  min-height: 200px;
+  contain: layout style;
+}
+
+/* Form input containers - fixed height */
+.input-container {
+  min-height: 48px;
+}
+
+/* Button containers - stable dimensions */
+.btn {
+  min-height: 44px; /* Touch-friendly minimum */
+}
+
+/* Skeleton loading states */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Skeleton placeholders with proper dimensions */
+.skeleton-text {
+  height: 1em;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.skeleton-title {
+  height: 2em;
+  width: 60%;
+  border-radius: 4px;
+}
+
+.skeleton-card {
+  min-height: 200px;
+  border-radius: 12px;
+}
+
+/* Content containment for performance */
+article,
+section {
+  contain: content;
+}
+
+/* Main content area - reserve minimum space */
+main {
+  min-height: calc(100vh - 64px - 400px); /* viewport - header - footer */
+}

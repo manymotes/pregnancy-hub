@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { memo } from 'react'
 
 interface ExploreItem {
   title: string
@@ -10,6 +11,7 @@ interface ExploreItem {
   color: string
 }
 
+// Static default items moved outside component to prevent re-creation
 const defaultItems: ExploreItem[] = [
   {
     title: "Week by Week",
@@ -39,15 +41,15 @@ const defaultItems: ExploreItem[] = [
     emoji: "📏",
     color: "from-green-50 to-teal-100 border-green-200"
   }
-]
+] as const
 
 interface ExploreMoreProps {
   title?: string
-  items?: ExploreItem[]
+  items?: readonly ExploreItem[] | ExploreItem[]
   variant?: 'grid' | 'row'
 }
 
-export default function ExploreMore({
+function ExploreMore({
   title = "Explore More",
   items = defaultItems,
   variant = 'grid'
@@ -97,3 +99,6 @@ export default function ExploreMore({
     </div>
   )
 }
+
+// Memoize to prevent re-renders when parent component updates
+export default memo(ExploreMore)

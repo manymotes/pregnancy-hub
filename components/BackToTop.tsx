@@ -1,29 +1,31 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 
-export default function BackToTop() {
+function BackToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
-  useEffect(() => {
-    const toggleVisibility = () => {
-      setIsVisible(window.scrollY > 500)
-    }
-
-    window.addEventListener('scroll', toggleVisibility, { passive: true })
-    return () => window.removeEventListener('scroll', toggleVisibility)
+  // Memoize scroll handler for better performance
+  const toggleVisibility = useCallback(() => {
+    setIsVisible(window.scrollY > 500)
   }, [])
 
-  const scrollToTop = () => {
+  useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility, { passive: true })
+    return () => window.removeEventListener('scroll', toggleVisibility)
+  }, [toggleVisibility])
+
+  // Memoize click handler
+  const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+  }, [])
 
   if (!isVisible) return null
 
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-20 right-4 z-40 p-3 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 transition-all hover:scale-110 md:bottom-8"
+      className="back-to-top-btn fixed bottom-20 right-4 z-40 p-3 bg-primary-600 text-white rounded-full shadow-lg hover:bg-primary-700 transition-all hover:scale-110 md:bottom-8"
       aria-label="Back to top"
     >
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -32,3 +34,6 @@ export default function BackToTop() {
     </button>
   )
 }
+
+// Memo prevents re-renders when parent component updates
+export default memo(BackToTop)

@@ -1,25 +1,32 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback, memo } from 'react'
 import Link from 'next/link'
 
-export function MedicalDisclaimerBanner() {
+function MedicalDisclaimerBannerComponent() {
   const [isVisible, setIsVisible] = useState(true)
   const [hasScrolled, setHasScrolled] = useState(false)
 
+  // Memoize scroll handler for better performance
+  const handleScroll = useCallback(() => {
+    setHasScrolled(window.scrollY > 100)
+  }, [])
+
   useEffect(() => {
-    const handleScroll = () => {
-      setHasScrolled(window.scrollY > 100)
-    }
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
+  }, [handleScroll])
+
+  // Memoize dismiss handler
+  const handleDismiss = useCallback(() => {
+    setIsVisible(false)
   }, [])
 
   if (!isVisible) return null
 
   return (
     <div
-      className={`bg-amber-50 border-b border-amber-200 transition-all duration-300 ${
+      className={`medical-disclaimer-banner bg-amber-50 border-b border-amber-200 transition-all duration-300 ${
         hasScrolled ? 'py-1' : 'py-2'
       }`}
     >
@@ -55,7 +62,7 @@ export function MedicalDisclaimerBanner() {
               Learn more
             </Link>
             <button
-              onClick={() => setIsVisible(false)}
+              onClick={handleDismiss}
               className="text-amber-600 hover:text-amber-800 p-1"
               aria-label="Dismiss disclaimer"
             >
@@ -69,3 +76,6 @@ export function MedicalDisclaimerBanner() {
     </div>
   )
 }
+
+// Export memoized component to prevent unnecessary re-renders
+export const MedicalDisclaimerBanner = memo(MedicalDisclaimerBannerComponent)

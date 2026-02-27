@@ -1,18 +1,21 @@
 'use client'
 
 import Link from 'next/link'
+import { memo } from 'react'
 
 interface QuickActionsProps {
   variant?: 'sticky' | 'inline'
 }
 
-export default function QuickActions({ variant = 'inline' }: QuickActionsProps) {
-  const actions = [
-    { emoji: '📅', label: 'Week by Week', href: '/week-by-week' },
-    { emoji: '🤰', label: 'Quiz', href: '/quiz/pregnancy-readiness' },
-    { emoji: '💭', label: 'Symptoms', href: '/symptoms' },
-    { emoji: '📏', label: 'Baby Size', href: '/baby-size-chart' },
-  ]
+// Static actions array moved outside component to prevent re-creation
+const actions = [
+  { emoji: '📅', label: 'Week by Week', href: '/week-by-week' },
+  { emoji: '🤰', label: 'Quiz', href: '/quiz/pregnancy-readiness' },
+  { emoji: '💭', label: 'Symptoms', href: '/symptoms' },
+  { emoji: '📏', label: 'Baby Size', href: '/baby-size-chart' },
+] as const
+
+function QuickActions({ variant = 'inline' }: QuickActionsProps) {
 
   if (variant === 'sticky') {
     return (
@@ -50,3 +53,6 @@ export default function QuickActions({ variant = 'inline' }: QuickActionsProps) 
     </div>
   )
 }
+
+// Memoize to prevent unnecessary re-renders when parent updates
+export default memo(QuickActions)

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import dynamic from 'next/dynamic'
@@ -39,7 +39,17 @@ const Footer = dynamic(
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap', // Ensure text remains visible during webfont load
+  preload: true, // Preload the font for faster LCP
 })
+
+// Viewport configuration for optimal mobile performance
+// This prevents layout shifts from viewport resizing
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#ec4899', // Primary pink color for browser UI
+}
 
 export const metadata: Metadata = {
   title: {
@@ -85,25 +95,28 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Resource hints for third-party domains - preconnect establishes early connections */}
-        {/* Google Analytics & Tag Manager */}
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        {/* Google Analytics & Tag Manager - defer loading, not critical for LCP */}
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />
 
-        {/* Google AdSense */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
+        {/* Google AdSense - defer loading, not critical for LCP */}
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-        <link rel="preconnect" href="https://tpc.googlesyndication.com" />
         <link rel="dns-prefetch" href="https://tpc.googlesyndication.com" />
 
-        {/* Google Fonts (used by next/font) */}
+        {/* Google Fonts (used by next/font) - critical for text rendering */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* Adsterra Ad Network */}
-        <link rel="preconnect" href="https://pl28758900.effectivegatecpm.com" />
+        {/* Adsterra Ad Network - defer loading */}
         <link rel="dns-prefetch" href="https://pl28758900.effectivegatecpm.com" />
+
+        {/* Preload critical CSS to prevent render-blocking */}
+        <link
+          rel="preload"
+          href="/icon.svg"
+          as="image"
+          type="image/svg+xml"
+        />
       </head>
       <body className={`${inter.className} antialiased bg-gray-50`}>
         <GoogleAnalytics />
